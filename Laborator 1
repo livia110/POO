@@ -3,6 +3,62 @@
 
 using namespace std;
 
+class Monitor
+{
+public:
+    string Culoare;
+    double Dimensiune;
+    int Resolutie;
+
+    void IntroducereProprietati()
+{
+    cout <<"\nCuloarea este:"<<Culoare;
+    cout <<"\nDimensiunea este:"<<Dimensiune;
+    cout <<"\nResolutia este:"<<Resolutie;
+    cout<<"\n\n";
+}
+};
+int main()
+{
+    Monitor PrimuluMonitor;
+    PrimuluMonitor.Culoare="black";
+    PrimuluMonitor.Dimensiune=12.5;
+    PrimuluMonitor.Resolutie=1080;
+
+    PrimuluMonitor.IntroducereProprietati();
+
+    Monitor alDoileaMonitor;
+    alDoileaMonitor.Culoare="black";
+    alDoileaMonitor.Dimensiune=12.5;
+    alDoileaMonitor.Resolutie=1087;
+
+    alDoileaMonitor.IntroducereProprietati();
+     if(PrimuluMonitor.Culoare == alDoileaMonitor.Culoare){
+        cout<<"Culoarea la monitoare este la fel";
+     }else{
+     cout<<"Culoarea la monitoare nu este la fel\n\n";
+     }
+     if(PrimuluMonitor.Dimensiune == alDoileaMonitor.Dimensiune){
+        cout<<"\n\nDimensiunea la monitoare este la fel";
+        cout<<"\n\n";
+     }else{
+     cout<<"Dimensiunea la monitoare nu este la fel";
+     cout<<"\n\n";
+     }
+     if(PrimuluMonitor.Resolutie == alDoileaMonitor.Resolutie){
+        cout<<"Resolutia la monitoare este la fel";
+        cout<<"\n\n";
+     }else{
+     cout<<"Resolutia la monitoare nu este la fel";
+     cout<<"\n\n";
+     }
+}
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class Student {
     string Nume;
     int Varsta;
