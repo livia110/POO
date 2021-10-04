@@ -55,83 +55,89 @@ int main()
 }
 
 #include <iostream>
-#include <string>
 
 using namespace std;
-
-class Student {
-    string Nume;
-    int Varsta;
-
+class student{
 public:
-    void IntroducereInformatiiStudent() {
-        cout<<"\nIntroduceti numele studentului:";fflush (stdin); cin>>Nume;
-        cout<<"\nIntroduceti varsta studentului:"; cin >>Varsta; }
+student(){
+cout<<"Introduceti numele studentului:"<<endl;
+cin>>name_s;
+cout<<"Introduceti varsta studentului:"<<endl;
+cin>>age_s;
+cout<<"Introduceti numarul de cursuri:"<<endl;
+cin>>n;
+mark=new int[n];
+int l=1;
+for(int i=0;i<n;i++){
+cout<<"Introduceti nota la "<<l++<<" cursul:"<<endl;
+cin>>mark[i];
+}
+}
+void print_student(){
+int l=1;
+cout<<"Nume student:"<<name_s<<" Varsta:"<<age_s<<endl;
+for(int i=0;i<n;i++){
+cout<<"Note discipline: "<<l++<<":"<<mark[i]<<endl;
+}
 
-    void AfisareInformatiiStudent() {
-        cout<<"\nNumele studentului:" << Nume << endl;
-        cout<<"\nVarsta studentului:"<< Varsta << endl; }
+}
+float media(){
+int sum=0;
+for(int i=0;i<n;i++){
+sum+=mark[i];
+}
+s=(float)sum/(float)n;
+return s;
+}
+private:
+char name_s[50];
+int *mark;
+int age_s;
+int n;
+float s;
 };
-
-class NoteStudent : public Student {
+class univer:public student{
 public:
-    int Prima;
-    int aDoua;
-    int aTreia;
-    float Media;
+univer(){
+cout<<"Introduceti denumirea universitatii:"<<endl;
+cin>>name;
+cout<<"Introduceti anul fondarii"<<endl;
+cin>>age;
+cout<<"Numarul de studenti:"<<endl;
+cin>>cou;
+s=new student[cou];
+}
+void med_s(){
+float med_univ=0;
+for(int i=0;i<cou;i++){
+med_univ+=s[i].media();
+}
+med_u=med_univ/cou;
+}
+void print(){
+cout<<name<<" "<<age<<endl;
+for(int i=0;i<cou;i++){
+s[i].print_student();
 
-public:
-    void IntroducereNote() {
-        IntroducereInformatiiStudent();
-        cout << "\nIntroduceti prima nota:"; cin >> Prima;
-        cout << "\nIntroduceti a doua nota:"; cin >> aDoua;
-        cout << "\nIntroduceti a treia nota:"; cin >> aTreia; }
-
-    void AfisareNote() {
-        AfisareInformatiiStudent();
-        cout << "\nPrima nota:" << Prima << endl;
-        cout << "\nA doua nota:" << aDoua << endl;
-        cout << "\nA treia nota:" << aTreia << endl; }
+}
+cout<<"Media universitate:"<<med_u<<endl;
+}
+private:
+char name[50];
+int age;
+int cou;
+student *s;
+float med_u;
 };
+int main()
+{
+int n;
+cout<<"Introduceti numarul de universitati:"<<endl;
+cin>>n;
+univer s[n];
+for(int i=0;i<n;i++){
+s[i].print();
+}
+return 0;
+}
 
-class RezultateStudent: public NoteStudent {
-public:
-    int calculare() {
-        Media = (Prima + aDoua + aTreia) / 3.0;
-        return Media; }
-};
-
-class Universitate {
-    string NumeUniversitate;
-    int AnFondare;
-
-public:
-    void IntroducereInformatiiUniversitate() {
-        cout<<"\nIntroduceti denumirea universitatii:";fflush (stdin); cin>>NumeUniversitate;
-        cout<<"\nIntroduceti anul fondarii:"; cin >> AnFondare; }
-
-    void AfisareInformatiiUniversitate() {
-        cout<<"Denumirea universitatii:" << NumeUniversitate << endl;
-        cout<<"Anul fondarii:" << AnFondare << endl; }
-} ;
-
-int main() {
-
-    Universitate arr;
-    cout << "\nIntroduceti numarul de universitati:"; int cnt; cin >> cnt;
-
-    int s = 0;
-    for (int i = 0; i < cnt; i++) {
-        arr.IntroducereInformatiiUniversitate ();
-        RezultateStudent str;
-        cout << "\nIntroduceti numarul de studenti:"; int n; cin >> n;
-        for (int j = 0; j < n; j++) {
-            str.IntroducereNote();
-            str.AfisareNote();
-            str.calculare();
-            s += str.calculare(); }
-        arr.AfisareInformatiiUniversitate();
-
-        cout << "Media generala:" << (float) s / n << endl; }
-
-    return 0; }
